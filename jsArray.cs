@@ -6,7 +6,7 @@ using System.Dynamic;
 
 namespace JONSParser
 {
-    public class jsArray : jsObject
+    class jsArray : jsObject
     {
         private int length = 0;
         public override string ToString()

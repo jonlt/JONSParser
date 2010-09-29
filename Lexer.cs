@@ -163,10 +163,12 @@ namespace JONSParser
             }
             else if (currentChar == '\u0000')
             {
+                TakeIt();
                 return TokenKind.End;
             }
             else
             {
+                TakeIt();
                 return TokenKind.Error;
             }
         }
@@ -177,6 +179,12 @@ namespace JONSParser
             currentSpelling = new StringBuilder();
             currentlyScanningToken = true;
             var kind = ScanToken();
+            currentlyScanningToken = false;
+            while (Char.IsWhiteSpace(currentChar) && currentChar != SourceString.End)
+            {
+                TakeIt();
+            }
+
             return new Token(kind, currentSpelling.ToString(), prevPos);
         }
 

@@ -64,8 +64,7 @@ namespace JONSParser
 
         private void SyntaxError(string msg)
         {
-            Console.WriteLine("Syntax error: "+msg+" at "+currentToken.Position);
-            AcceptIt();
+            throw new SyntaxErrorException(msg+" at position "+currentToken.Position);
         }
 
         private void Accept(TokenKind expected)

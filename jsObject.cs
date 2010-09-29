@@ -6,7 +6,7 @@ using System.Dynamic;
 
 namespace JONSParser
 {
-    public class jsObject : DynamicObject, IEnumerable<jsObject>
+    class jsObject : DynamicObject, IEnumerable<jsObject>
     {
         protected const object undefined = null;
         protected object value = undefined;
@@ -115,12 +115,6 @@ namespace JONSParser
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            if (binder.Name == "__fields__")
-            {
-                result = Fields;
-                return true;
-            }
-
             try
             {
                 result = Fields[binder.Name];
