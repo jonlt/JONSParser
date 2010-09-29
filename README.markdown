@@ -27,12 +27,41 @@ Example:
 						}";
 
 	// parse the string
-	var json = JSON.Parse(jsonString);
+	var json = JONSParser.JSON.Parse(jsonString);
 
-	// get the first name
-	var firstName = json.Person.firstName;
-	var city = json.Person.Address.city;
+	// get the name
+	var name = json.Person.firstName + " " + json.Person.lastName;
 
-	// print
-	Console.WriteLine("Hi "+firstName+" from "+city);
+	// print the name
+	Console.WriteLine(name);
+
+	// print all the entries in the address
+	var address = json.Person.Address;
+	foreach (var item in address)
+		Console.WriteLine(item);
+
+
 	Console.Read();
+	
+Additional Stuff:
+-----------------
+
+	// define a property on the object
+	// its used in the parser to build the objects, but it is publicly available, so you can use it too.
+	json.__defineProperty__(string key, string value)
+	
+	// test if the object has the specified property
+	// returns true or false
+	json.hasOwnProperty(string name)
+	// shorthand
+	json.__has(string name)
+	
+	// get the value with the specified key
+	// same as json.key
+	json[string key]
+	
+	// get the value at the specified index (arrays only)
+	json[int index]
+	
+	// get the length (arrays only)
+	json.length	
