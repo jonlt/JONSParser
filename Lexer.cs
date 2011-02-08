@@ -101,9 +101,43 @@ namespace JONSParser
                 {
                     TakeIt();
                 }
+                if (currentChar == '.')
+                {
+                    TakeIt();
+                    while (Char.IsDigit(currentChar))
+                    {
+                        TakeIt();
+                    }
+                }
+
                 return TokenKind.Number;
             }
-            else if (currentChar == '"') 
+            else if (currentChar == '-')
+            {
+                TakeIt();
+                if (Char.IsDigit(currentChar))
+                {
+                    while (Char.IsDigit(currentChar))
+                    {
+                        TakeIt();
+                    }
+                    if (currentChar == '.')
+                    {
+                        TakeIt();
+                        while (Char.IsDigit(currentChar))
+                        {
+                            TakeIt();
+                        }
+                    }
+                    return TokenKind.Number;
+                }
+                else
+                {
+                    return TokenKind.Error;
+                }
+
+            }
+            else if (currentChar == '"')
             {
                 TakeIt();
                 while (currentChar != '"' && currentChar != SourceString.End)
@@ -117,7 +151,7 @@ namespace JONSParser
                 TakeIt();
                 return TokenKind.String;
             }
-            else if (currentChar == '\'') 
+            else if (currentChar == '\'')
             {
                 TakeIt();
                 while (currentChar != '\'' && currentChar != SourceString.End)
