@@ -14,6 +14,7 @@ namespace JONSParser
         {
             var lexer = new Lexer(str);
             var parser = new Parser(lexer);
+
             return parser.Parse();
         }
     }
