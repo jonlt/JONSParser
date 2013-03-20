@@ -6,7 +6,7 @@ using System.Text;
 namespace JONSParser
 {
     /// <summary>
-    /// The parser!
+    /// The parser
     /// </summary>
     public static class JSON
     {
