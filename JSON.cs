@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JONSParser
 {
+    /// <summary>
+    /// The parser
+    /// </summary>
     public static class JSON
     {
         public static dynamic Parse(string str)
